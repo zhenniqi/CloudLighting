@@ -1,0 +1,321 @@
+/*--header_start--*/
+
+th {
+    color: rgb(132, 132, 132);
+    font-size: 20px; /* 改变字体大小为 20 像素 */
+    background-color: white;
+}
+
+button {
+    background-color: #848484; /* 设置按钮背景颜色 */
+    border: none; /* 移除按钮边框 */
+    color: white; /* 设置按钮文本颜色 */
+    padding: 5px 10px; /* 设置按钮内边距 */
+    text-align: center; /* 设置按钮文本居中 */
+    text-decoration: none; /* 移除文本装饰 */
+    display: inline-block; /* 设置按钮为行内块级元素 */
+    font-size: 12px; /* 设置按钮文本字体大小 */
+    border-radius: 6px; /* 设置按钮圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+}
+
+
+button:hover {
+    background-color: #45a049; /* 设置鼠标悬停时的背景颜色 */
+}
+
+
+
+input[type="text"],
+input[type="number"] {
+    padding: 6px; /* 设置输入框内边距 */
+    border: 1px solid #ccc; /* 设置输入框边框 */
+    border-radius: 6px; /* 设置输入框圆角 */
+    font-size: 10px; /* 设置输入框文本字体大小 */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none; /* 移除输入框获取焦点时的默认外观 */
+    border-color: #4CAF50; /* 设置输入框获取焦点时的边框颜色 */
+}
+
+
+
+
+*{
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    font-weight: lighter;
+    text-decoration: none;   /* remove_underscore */
+   
+   
+}
+
+
+a{
+    color: rgb(255, 255, 255);
+    font-size: small;
+}
+
+#select a{
+    padding: 4px;
+}
+
+#select a:hover{
+    border-radius: 10px;
+    background-color: black;
+
+}
+
+#logo{
+    display: flex;
+   
+}
+
+#logo h3{
+    color: rgb(58, 64, 64);
+    font-weight: bold;
+}
+
+#logo span{
+    color: rgb(101, 101, 96);
+    font-style: italic;
+}
+
+
+
+
+
+#logo:hover,#cloudlighting:hover {
+    transform: rotate(5deg); /* Apply a rotation */
+    animation: shake 0.3s ease-in-out infinite; /* Use a custom shake animation */
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25%, 75% {
+        transform: translateX(-5px); /* Adjust the distance of the shake */
+    }
+    50% {
+        transform: translateX(5px); /* Adjust the distance of the shake */
+    }
+}
+
+header{
+    display: flex;
+    border: .1rem solid rgba(0,0,0,0.2);
+    padding: 4px;
+}
+
+#cog{
+    position: absolute;
+    top: 1%;
+    right: 25%;
+    border-radius: 10px;
+    padding: 2.5px;
+}
+
+#cog:hover {
+   background-color: gray;
+}
+
+#cog.active{
+    background-color: gray;
+}
+
+header .Setting{
+    position: absolute;
+    top: 5%;
+    right: 25%;
+    display: none; 
+    border: .1rem solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 2px;
+    background-color: grey;
+}
+
+.Setting a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+header  .Setting.active{
+    display: block;
+}
+
+#grid{
+    position: absolute;
+    top: 1%;
+    right: 15%;
+    border-radius: 10px;
+    padding: 2.5px;
+}
+
+#grid:hover {
+    background-color: gray;
+ }
+
+#grid.active{
+    background-color: gray;
+}
+
+header .Function{
+    position: absolute;
+    top: 5%;
+    right: 15%;
+    display: none;
+    border: .1rem solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 2px;
+    background-color: grey;
+}
+
+.Function a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+header .Function.active{
+    display: block;
+}
+
+#user {
+    position: absolute;
+    top: 1%;
+    right:3%;
+    border-radius: 10px;
+    padding: 2.5px;
+}
+
+#user:hover {
+    background-color: gray;
+ }
+
+#user.active{
+    background-color: gray;
+}
+
+header .User{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    display: none;
+    border: .1rem solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 2px;
+    background-color: grey;
+}
+
+.User a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+header .User.active{
+    display: block;
+}
+/*--header_stop--*/
+/*--sidebar_start--*/
+    /*--sidebar_stop--*/
+    /*--browser_start_modify_add_delete_qrcodegenerator_batoperator_texttovoice--*/
+
+    /*--browser_stop--*/
+    /*----*/
+    /*----*/
+
+
+
+
+
+
+
+
+
+
+
+
+    /* table css standard */
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    .action-buttons button {
+        margin-right: 5px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .action-buttons button:hover {
+        background-color: #0056b3;
+    }
+
+
+
+    /* add button line */
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    
+    .container button {
+        margin-right: 50px;
+        
+    }
+    
+    
+
+
+    /* dark mode */
+    /* 默认主题 */
+        body {
+    background-color: #ffffff;
+    color: #000000;
+            }
+
+/* DarkMode 主题 */
+        body.dark-mode {
+    background-color: #222222;
+    color: #ffffff;
+    }
+
+
+    th  {
+        color: white; /* 将 <th> 的字体颜色设为白色 */
+        font-size: 20px; /* 改变字体大小为 20 像素 */
+        background-color: #565656; /* 将 <tr> 的背景颜色设为黑色 */
+
+    }
+    
+
+
+
+  
+
+            

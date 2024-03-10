@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard_Responsive</title>
+    <link rel="stylesheet" href="/dashboard.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        .editable {
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    
+    <!--header_start-->
+    <header>
+        <div id="logo" onclick="datamanager()">
+            <i class='bx bx-cloud-lightning'></i>
+            <a href="#"><h3><span>Cloud</span>Lighting</h3></a>
+        </div>
+        <i class='bx bxs-cog' id="cog"></i>
+        <i class='bx bx-grid' id="grid"></i>
+        <i class='bx bxs-user-circle' id="user"></i>
+
+        <div id="select">
+            <div class="Setting">
+                <a href="#" onclick="toggleDarkMode()">DarkMode</a>
+                <!--<a href="#">Language</a>-->
+             </div>
+        
+            <div class="Function">
+                <a href="#" onclick="history()">history_manager</a>
+                <a href="#" onclick="datamanager()">DataManger</a>
+                <!--<a href="#">History_browser</a>-->
+                 <!--<a href="#">Morden-Browser</a>-->
+             </div>
+        
+            <div class="User">
+                <a href="#" onclick="changePassword()">Change_password</a>
+                <a href="#" onclick="logout()">Log_out</a>
+                <a href="#" onclick="confirmDelete()">Delete_account</a>
+                <!--<a href="#">Create_your_sub_account</a>-->
+            </div>
+
+            <script>
+               // 在页面加载时检查用户的偏好设置
+            document.addEventListener('DOMContentLoaded', function() {
+              const isDarkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
+
+              // 根据用户的偏好设置初始化页面主题模式
+             if (isDarkModeEnabled) {
+                document.body.classList.add('dark-mode');
+              }
+            });
+
+            // 切换 DarkMode
+            function toggleDarkMode() {
+             // 切换 body 元素的类名，以便切换不同的样式
+          document.body.classList.toggle('dark-mode');
+         
+
+                
+
+
+              // 保存用户的偏好设置
+              const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+              localStorage.setItem('darkModeEnabled', isDarkModeEnabled.toString());
+            }
+
+
+
+
+            </script>
+
+
+
+
+
+
+            <script>
+
+                        function datamanager(){
+                        //alert("1")
+                
+                            var xhr = new XMLHttpRequest();
+                             xhr.open('POST', '/datamanager', true);
+                             xhr.setRequestHeader('Content-Type', 'application/json');
+                             xhr.onreadystatechange = function() {
+                             if (xhr.readyState === XMLHttpRequest.DONE) {
+                           if (xhr.status === 200) {
+                               //console.log(xhr.responseText); // 输出后端返回的数据
+                           // 在这里执行后续操作，页面redirect
+                           window.location.reload(); // 重新加载页面
+
+                        } else {
+                           console.error('Request failed with status:', xhr.status);
+                       }
+                        }
+                      };
+                      xhr.onerror = function() {
+                     console.error('Request failed');
+                      };
+
+                      //standard
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const loginName = urlParams.get('loginName');
+                    
+
+                     var data = JSON.stringify({ login_name: loginName }); // 替换为实际的用户名
+                     xhr.send(data);
+                     
+                    }
+
+
+
+
+            </script>
+
+
+
+
+                        <% if (hideButtons) { %>
+                            <style>
+                         /* 使用CSS隐藏所有按钮 */
+                    button {
+                        display: none;
+                        }
+                        </style>
+                            <% } %>
+
+
+
+
+            <script>
+                    function history(){
+                        //alert("1")
+                
+                            var xhr = new XMLHttpRequest();
+                             xhr.open('POST', '/history', true);
+                             xhr.setRequestHeader('Content-Type', 'application/json');
+                             xhr.onreadystatechange = function() {
+                             if (xhr.readyState === XMLHttpRequest.DONE) {
+                           if (xhr.status === 200) {
+                               //console.log(xhr.responseText); // 输出后端返回的数据
+                           // 在这里执行后续操作，页面redirect
+                           window.location.reload(); // 重新加载页面
+
+                        } else {
+                           console.error('Request failed with status:', xhr.status);
+                       }
+                        }
+                      };
+                      xhr.onerror = function() {
+                     console.error('Request failed');
+                      };
+
+                      //standard
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const loginName = urlParams.get('loginName');
+                    
+
+                     var data = JSON.stringify({ login_name: loginName }); // 替换为实际的用户名
+                     xhr.send(data);
+                     
+                    }
+
+            </script>
+
+
+
+
+
+            <script>
+
+                function changePassword() {
+             // 使用prompt()函数弹出对话框，要求用户输入新密码
+             var newPassword = prompt("Please enter your new password:");
+
+              // 如果用户点击了确定按钮，并且输入了密码，则进行相应处理
+              if (newPassword != null && newPassword !== "") {
+                updatePassword(newPassword)
+                alert("Password has changed")
+            // 将新密码发送到后端进行处理，更新用户密码等操作
+                } else {
+              // 如果用户点击了取消按钮或者未输入密码，则什么都不做
+            
+            }
+              }
+
+
+                function updatePassword(newPassword){
+                            var xhr = new XMLHttpRequest();
+                             xhr.open('POST', '/updatePassword', true);
+                             xhr.setRequestHeader('Content-Type', 'application/json');
+                             xhr.onreadystatechange = function() {
+                             if (xhr.readyState === XMLHttpRequest.DONE) {
+                           if (xhr.status === 200) {
+                               console.log(xhr.responseText); // 输出后端返回的数据
+                             alert('Password of "'+ loginName+ '" updated successfully');
+                           // 在这里执行后续操作，页面redirect
+
+                           window.location.href = "/login"
+                        } else {
+                           console.error('Request failed with status:', xhr.status);
+                       }
+                        }
+                      };
+                      xhr.onerror = function() {
+                     console.error('Request failed');
+                      };
+
+                      //standard
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const loginName = urlParams.get('loginName');
+                    
+
+                     var data = JSON.stringify({ login_name: loginName ,password: newPassword}); // 替换为实际的用户名
+                     xhr.send(data);
+                     }
+
+                
+
+
+
+
+
+                function logout() {
+                    window.location.href = "/login"// 将页面重定向到登录页面
+                }
+                function confirmDelete() {
+                     var result = confirm("Are you sure you want to delete your account?");
+                     if (result) {
+                     // 如果用户确认删除，执行相应操作
+
+                     deleteUser()
+
+                         } else {
+                    // 如果用户取消删除，不执行任何操作
+        
+                    // alert("Account deletion canceled.");
+                          }
+                        }
+                        //standard xgr example
+                        function deleteUser() {
+                            var xhr = new XMLHttpRequest();
+                             xhr.open('POST', '/deleteUser', true);
+                             xhr.setRequestHeader('Content-Type', 'application/json');
+                             xhr.onreadystatechange = function() {
+                             if (xhr.readyState === XMLHttpRequest.DONE) {
+                           if (xhr.status === 200) {
+                               console.log(xhr.responseText); // 输出后端返回的数据
+                             alert('User "'+ loginName+ '" deleted successfully');
+                           // 在这里执行后续操作，页面redirect
+                           window.location.href = "/login"
+                        } else {
+                           console.error('Request failed with status:', xhr.status);
+                       }
+                        }
+                      };
+                      xhr.onerror = function() {
+                     console.error('Request failed');
+                      };
+
+                      //standard
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const loginName = urlParams.get('loginName');
+                    
+
+                     var data = JSON.stringify({ login_name: loginName }); // 替换为实际的用户名
+                     xhr.send(data);
+                     }
+            </script>
+
+
+        </div>
+    </header>
+    <!--header_stop-->
+
+
+    <!--sidebar_start-->
+    <!--sidebar_stop-->
+    <!--browser_start_modify_add_delete_qrcodegenerator_batoperator_texttovoice-->
+
+    <div class="container">
+        <h3 style="font-size: 24px;"><%= database_name %></h3>
+        <input type="text" id="deviceName" placeholder="Device Name">
+        <input type="text" id="deviceCode" placeholder="Device Code">
+        <input type="number" id="deviceNumber" placeholder="Device Number">
+        <input type="text" id="operatingData" placeholder="Operating Data">
+        <button onclick="addDevice()">Add Device</button>
+    </div>
+
+    <script>
+
+function addDevice() {
+    const login_name = "<%= login_name %>";
+
+    var deviceData = {
+        deviceName: document.getElementById('deviceName').value,
+        deviceCode: document.getElementById('deviceCode').value,
+        deviceNumber: document.getElementById('deviceNumber').value,
+        operatingData: document.getElementById('operatingData').value,
+        login_name: login_name
+    };
+
+    fetch('/addDevice', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(deviceData)
+    }).then(response => {
+        if (response.ok) {
+            console.log('Device added successfully');
+            // 在这里执行页面刷新的逻辑，可以重新加载页面或者通过 JavaScript 更新页面数据
+            window.location.reload(); // 重新加载页面
+        } else {
+            console.error('Failed to add device');
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+        
+    }
+    </script>
+
+
+
+
+
+
+
+    <div class="table">
+        <table>
+            <tr class="dark-mode">
+                <th>device_name</th>
+                <th>device_code</th>
+                <th>device_number</th>
+                <th>operating_data</th>
+                <th>Action</th>
+            </tr>
+
+           
+
+           
+ 
+            <%
+          
+            // 定义 sampleData 数组，并向其中添加用户数据对象,using to debug
+            var sampleData = [
+                {
+                    device_name: "user1",
+                    device_code: "password1",
+                    device_number: "user1@example.com",
+                    sign_up_data: "2022-03-05"
+                },
+                {
+                    device_name: "user2",
+                    device_code: "password2",
+                    device_number: "user2@example.com",
+                    sign_up_data: "2022-03-06"
+                },
+                // 可以继续添加其他用户数据对象...
+            ];
+
+
+
+            if(userStructure.length > 0)
+            {
+                userStructure.forEach(function(data){
+            %>
+
+            <tr>
+                
+                <td><%= data.device_name %></td>
+                <td><%= data.device_code %></td>
+                <td><%= data.device_number %></td>
+                <td><%= data.operating_data %></td>
+               
+
+                <td>
+                    <button onclick="editDevice('<%= data.id %>')">Edit</button>
+
+                    <!-- delete button -->
+                    <button onclick="deleteDevice('<%= data.id %>')" data-id="<%= data.id %>">Delete</button>
+                </td>
+
+
+
+
+
+            </tr>
+
+            <%
+                });
+            }
+            else
+            {
+            %>    
+
+            <tr>
+                <td>No_Data_Found</td>       
+            </tr>
+
+            <%
+            }
+            %>
+
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 编辑表单 -->
+<div id="editForm" style="display: none;">
+    <input type="text" id="editDeviceName">
+    <input type="text" id="editDeviceCode">
+    <input type="text" id="editDeviceNumber">
+    <input type="text" id="editOperatingData">
+    <button onclick="submitEdit()">Submit</button>
+</div>
+
+<script>
+    let currentDeviceID
+    // 编辑按钮点击事件
+    function editDevice(deviceId) {
+        // 获取相应行的数据
+       // alert("0")
+
+
+        currentDeviceID = deviceId
+
+
+
+
+
+       const rowData = {}/* 从相应行中获取数据的方法，可能是从表格中提取或通过 AJAX 请求获取 */
+     
+        
+
+
+       // alert("ok0")
+
+
+        // 将数据填充到编辑表单中
+        document.getElementById('editDeviceName').value = rowData.device_name;
+        document.getElementById('editDeviceCode').value = rowData.device_code;
+        document.getElementById('editDeviceNumber').value = rowData.device_number;
+        document.getElementById('editOperatingData').value = rowData.operating_data;
+
+
+        //alert("ok1")
+        // 显示编辑表单
+        document.getElementById('editForm').style.display = 'block';
+    }
+
+
+    
+        // 提交编辑
+         function submitEdit() {
+        // 获取编辑后的数据     
+        const login_name = "<%= login_name %>"   
+        //alert("ok2")
+
+        const editedData = {
+            deviceName: document.getElementById('editDeviceName').value,
+            deviceCode: document.getElementById('editDeviceCode').value,
+            deviceNumber: document.getElementById('editDeviceNumber').value,
+            operatingData: document.getElementById('editOperatingData').value,
+           deviceId: currentDeviceID,
+           login_name: login_name
+        };
+
+       // alert("ok3")
+        // 发送编辑后的数据到服务器
+        fetch('/editDevice', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedData)
+        }).then(response => {
+            if (response.ok) {
+                console.log('Device edited successfully');
+                // 在这里执行页面刷新的逻辑，可以重新加载页面或者通过 JavaScript 更新页面数据
+                window.location.reload(); // 重新加载页面
+            } else {
+                console.error('Failed to edit device');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+
+        // 隐藏编辑表单
+        document.getElementById('editForm').style.display = 'none';
+    }
+</script>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+   // JavaScript 函数，用于删除对应的数据行
+function deleteDevice(deviceId) {
+    const login_name = "<%= login_name %>";
+
+    // 弹出确认对话框
+    var result = confirm("Are you sure you want to delete this device?");
+    if (result) {
+        // 向后端发送请求
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/deleteDevice', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log('Device deleted successfully');
+                    // 可以在此处执行一些操作，例如更新页面内容等
+                    
+                    window.location.reload(); // 重新加载页面
+
+
+
+
+                } else {
+                    console.error('Failed to delete device');
+                }
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+        xhr.send(JSON.stringify({ deviceId: deviceId ,dbname: login_name}));
+    }
+
+
+
+}
+
+    </script>
+
+
+
+    
+    <!--browser_stop-->
+    <!---->
+    <!---->
+
+    <script src="/dashboard_client.js"></script>
+
+</body>
+</html>
+
